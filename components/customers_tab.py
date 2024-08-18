@@ -1,10 +1,7 @@
 from datetime import datetime
 import streamlit as st
 
-try:
-    from models.customer import Customer
-except:  # noqa
-    from models.customer import Customer
+from models.customer import Customer
 
 
 def set_user_updated(status):

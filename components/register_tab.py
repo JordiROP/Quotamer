@@ -1,9 +1,6 @@
 import streamlit as st
 
-try:
-    from models.customer import Customer
-except:  # noqa
-    from models.customer import Customer
+from models.customer import Customer
 
 
 def init_customer(customer=None):

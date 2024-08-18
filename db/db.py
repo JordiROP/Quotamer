@@ -2,10 +2,8 @@ from sqlalchemy import create_engine, update
 from sqlalchemy.orm import Session
 import pandas as pd
 
-try:
-    from models.customer import Customer
-except:
-    from models.customer import Customer
+from models.customer import Customer
+
 
 class DB:
     def __init__(self):
