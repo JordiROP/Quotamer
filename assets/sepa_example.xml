@@ -1,0 +1,102 @@
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pain.008.001.02">
+        <CstmrDrctDbtInitn>
+            <GrpHdr>
+                <MsgId>PRE2018*****</MsgId>
+                <CreDtTm>2018-12-10T14:31:01</CreDtTm>
+                <NbOfTxs>2</NbOfTxs>
+                <CtrlSum>200</CtrlSum>
+                <InitgPty>
+                    <Nm><strong>TU NOMBRE COMERCIAL</strong></Nm>
+                    <Id>
+                        <PrvtId>
+                            <Othr>
+                                <Id><strong>TU IDENTIFICADOR</strong></Id>
+                            </Othr>
+                        </PrvtId>
+                    </Id>
+                </InitgPty>
+            </GrpHdr>
+            <PmtInf>
+                <PmtInfId>ES****</PmtInfId>
+                <PmtMtd>DD</PmtMtd>
+                <BtchBookg>true</BtchBookg>
+                <NbOfTxs>1</NbOfTxs>
+                <CtrlSum>100</CtrlSum>
+                <PmtTpInf>
+                    <SvcLvl>
+                        <Cd>SEPA</Cd>
+                    </SvcLvl>
+                    <LclInstrm>
+                        <Cd>CORE</Cd>
+                    </LclInstrm>
+                    <SeqTp>RCUR</SeqTp>
+                </PmtTpInf>
+                <ReqdColltnDt>2018-12-10</ReqdColltnDt>
+                <Cdtr>
+                    <Nm><strong>TU NOMBRE COMERCIAL</strong></Nm>
+                </Cdtr>
+                <CdtrAcct>
+                    <Id>
+                        <IBAN><strong>TU CUENTA BANCARIA</strong></IBAN>
+                    </Id>
+                </CdtrAcct>
+                <CdtrAgt>
+                    <FinInstnId>
+                        <BIC>BBVAESMMXXX</BIC>
+                    </FinInstnId>
+                </CdtrAgt>
+                <CdtrSchmeId>
+                    <Id>
+                        <PrvtId>
+                            <Othr>
+                                <Id><strong>TU DNI O CIF FISCAL</strong></Id>
+                                <SchmeNm>
+                                    <Prtry>SEPA</Prtry>
+                                </SchmeNm>
+                            </Othr>
+                        </PrvtId>
+                    </Id>
+                </CdtrSchmeId>
+                <DrctDbtTxInf>
+                    <PmtId>
+                        <EndToEndId>2-*******</EndToEndId>
+                    </PmtId>
+                    <InstdAmt Ccy="EUR">100</InstdAmt>
+                    <DrctDbtTx>
+                        <MndtRltdInf>
+                            <MndtId>41023</MndtId>
+                            <DtOfSgntr>2018-12-10</DtOfSgntr>
+                            <AmdmntInd>true</AmdmntInd>
+                            <AmdmntInfDtls>
+                                <OrgnlCdtrSchmeId>
+                                    <Nm>TU NOMBRE COMERCIAL</Nm>
+                                </OrgnlCdtrSchmeId>
+                            </AmdmntInfDtls>
+                        </MndtRltdInf>
+                    </DrctDbtTx>
+                    <DbtrAgt>
+                        <FinInstnId/>
+                    </DbtrAgt>
+                    <Dbtr>
+                        <Nm><strong>NOMBRE Y APELLIDOS CLIENTE (O NOMBRE DE EMPRESA A LA QUE QUIERES COBRAR)</strong></Nm>
+                        <Id>
+                            <PrvtId>
+                                <Othr>
+                                    <Id><strong>DNI DE TU CLIENTE</strong></Id>
+                                    <Issr>NIF</Issr>
+                                </Othr>
+                            </PrvtId>
+                        </Id>
+                    </Dbtr>
+                    <DbtrAcct>
+                        <Id>
+                            <IBAN>CUENTA BANCARIA DODNE QUIERAS CARGAR EL COBRO</IBAN>
+                        </Id>
+                    </DbtrAcct>
+                    <RmtInf>
+                        <Ustrd>INFORMACIÓN RELATIVA AL COBRO (EN MI CASO PONGO EL NÚMERO DE FACTURA)</Ustrd>
+                    </RmtInf>
+                </DrctDbtTxInf>
+            </PmtInf>
+        </CstmrDrctDbtInitn>
+    </Document>
