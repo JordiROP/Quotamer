@@ -1,7 +1,9 @@
-from datetime import datetime
+import pandas as pd
+from datetime import datetime as dt
 import streamlit as st
 
 from models.customer import Customer
+from services.formater import DATETIME_DATE_FORMAT, INPUT_DATE_FORMAT
 
 
 def set_user_updated(status):
@@ -53,7 +55,8 @@ def select_customer_details(selection, app_db):
             st.text_input("Primer Apellido", key="details_f_surname", value=selection.get("apellido1", ""))
             st.text_input("Segundo Apellido", key="details_s_surname", value=selection.get("apellido2", ""))
             st.date_input("Fecha de Nacimiento", key="details_birthday",
-                          value=datetime.strptime(selection.get("fecha_nacimiento", ""), '%d/%m/%Y'))
+                          value=dt.strptime(selection.get("fecha_nacimiento", ""), DATETIME_DATE_FORMAT),
+                          format=INPUT_DATE_FORMAT)
             st.text_input("Numero de Telefono", key="details_phone", value=selection.get("telefono", ""))
             st.text_input("Email", key="details_email", value=selection.get("email", ""))
         with col2:
@@ -66,13 +69,14 @@ def select_customer_details(selection, app_db):
             st.text_input("IBAN", key="details_iban", value=selection.get("IBAN", ""))
             st.number_input("Cuota", key="details_quota", value=selection.get("cuota", ""))
             st.date_input("Fecha de Alta", key="details_register_date",
-                          value=datetime.strptime(selection.get("alta", ""), '%d/%m/%Y'))
+                          value=dt.strptime(selection.get("alta", ""), DATETIME_DATE_FORMAT),
+                          format=INPUT_DATE_FORMAT)
             st.date_input("Fecha de Baja", key="details_drop_date",
-                          value=datetime.strptime(selection.get("baja", ""), '%d/%m/%Y'))
+                          value=dt.strptime(selection.get("baja", ""), DATETIME_DATE_FORMAT),
+                          format=INPUT_DATE_FORMAT)
             st.checkbox("Activo", key="details_active", value=True if selection.get("activo", "") == "Y" else False)
 
         submitted = st.form_submit_button("Confirmar")
-        print(submitted)
         if submitted:
             customer = Customer(dni=st.session_state.details_dni, name=st.session_state.details_name,
                                 surname1=st.session_state.details_f_surname,
@@ -98,6 +102,12 @@ def select_customer_details(selection, app_db):
 def set_customers_table(app_db):
     st.markdown("<style>{div[role=dialog]:{width: 70%}}</style>", unsafe_allow_html=True)
     customers_df = app_db.get_customers()
+    customers_df["fecha_nacimiento"] = pd.to_datetime(customers_df["fecha_nacimiento"])
+    customers_df["alta"] = pd.to_datetime(customers_df["alta"])
+    customers_df["baja"] = pd.to_datetime(customers_df["baja"])
+    customers_df["fecha_nacimiento"] = customers_df["fecha_nacimiento"].dt.strftime(DATETIME_DATE_FORMAT)
+    customers_df["alta"] = customers_df["alta"].dt.strftime(DATETIME_DATE_FORMAT)
+    customers_df["baja"] = customers_df["baja"].dt.strftime(DATETIME_DATE_FORMAT)
     event = st.dataframe(customers_df,
                          use_container_width=True,
                          selection_mode=["single-row"],

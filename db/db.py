@@ -7,7 +7,7 @@ from models.customer import Customer
 
 class DB:
     def __init__(self):
-        self.engine = create_engine('sqlite:///app/assets/data/database.db')
+        self.engine = create_engine('sqlite:///assets/data/database.db')
 
     def get_customers(self):
         with self.engine.connect() as conn:

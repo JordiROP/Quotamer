@@ -1,7 +1,7 @@
 import streamlit as st
 
 from models.customer import Customer
-
+from services.formater import INPUT_DATE_FORMAT
 
 def init_customer(customer=None):
     if "customer" not in st.session_state:
@@ -21,10 +21,12 @@ def clean_session():
         del st.session_state.user_created
     if "customer" in st.session_state:
         del st.session_state.customer
+        print(st.session_state.customer)
 
 
 @st.dialog("Panel de confirmación de registro", width="large")
 def register_confirmation(customer, db):
+    date_format = '%d-%m-%Y'
     st.warning("Por favor confirma que los campos son correctos, "
                "pulsa 'Confirmar' si todo está bien, en caso contrario pulsa 'Cancelar'")
     col1, col2, col3 = st.columns(3)
@@ -33,7 +35,7 @@ def register_confirmation(customer, db):
         st.text(f"Nombre: {customer.name}")
         st.text(f"1er Apellido: {customer.surname1}")
         st.text(f"2do Apellido: {customer.surname2}")
-        st.text(f"Fecha Nacimiento: {customer.birthdate}")
+        st.text(f"Fecha Nacimiento: {customer.birthdate.strftime(date_format)}")
         st.text(f"Telefono: {customer.phone}")
         st.text(f"Email: {customer.email}")
     with col2:
@@ -45,7 +47,7 @@ def register_confirmation(customer, db):
     with col3:
         st.text(f"IBAN: {customer.iban}")
         st.text(f"Cuota: {customer.quota}")
-        st.text(f"Fecha Alta: {customer.register_date}")
+        st.text(f"Fecha Alta: {customer.register_date.strftime(date_format)}")
 
     but_col1, but_col2, *_ = st.columns([1] * 10)
     with but_col1:
@@ -56,6 +58,7 @@ def register_confirmation(customer, db):
     if ok:
         result = db.insert_customer(customer)
         set_user_created(result)
+        init_customer(Customer.create_empty_customer())
         st.rerun()
     if ko:
         st.rerun()
@@ -64,14 +67,15 @@ def register_confirmation(customer, db):
 def register_customer(db):
     st.header("Panel de Registro")
     init_customer()
-    with st.form("my_form", clear_on_submit=True):
+    with st.form("register_form", clear_on_submit=True):
         col1, col2, col3 = st.columns(3)
         with col1:
             st.text_input("DNI", key="dni", value=st.session_state.customer.dni)
             st.text_input("Nombre", key="name", value=st.session_state.customer.name)
             st.text_input("Primer Apellido", key="f_surname", value=st.session_state.customer.surname1)
             st.text_input("Segundo Apellido", key="s_surname", value=st.session_state.customer.surname2)
-            st.date_input("Fecha de Nacimiento", key="birthday", value=st.session_state.customer.birthdate)
+            st.date_input("Fecha de Nacimiento", key="birthday",
+                          value=st.session_state.customer.birthdate, format=INPUT_DATE_FORMAT)
             st.text_input("Numero de Telefono", key="phone", value=st.session_state.customer.phone)
             st.text_input("Email", key="email", value=st.session_state.customer.email)
         with col2:
@@ -83,7 +87,8 @@ def register_customer(db):
         with col3:
             st.text_input("IBAN", key="iban", value=st.session_state.customer.iban)
             st.number_input("Cuota", key="quota", value=st.session_state.customer.quota)
-            st.date_input("Fecha de Alta", key="register_date", value=st.session_state.customer.register_date)
+            st.date_input("Fecha de Alta", key="register_date",
+                          value=st.session_state.customer.register_date, format=INPUT_DATE_FORMAT)
 
         submitted = st.form_submit_button("Confirmar")
 

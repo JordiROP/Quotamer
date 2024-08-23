@@ -16,7 +16,7 @@ with open(CSS_FILE) as f:
 
 img, title = st.columns([0.1, 0.9])
 with img:
-    st.image("app/assets/images/gimnas_puente_logo.jpg", use_column_width="always")
+    st.image("assets/images/gimnas_puente_logo.jpg", use_column_width="always")
 with title:
     st.text("")
     st.text("")

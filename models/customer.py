@@ -2,6 +2,8 @@ from sqlalchemy import Column, String, Boolean, Numeric, Date, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime as dt
 
+from services.formater import DATETIME_DATE_FORMAT, EARLIEST_DATE
+
 Base = declarative_base()
 
 
@@ -9,7 +11,7 @@ class Customer(Base):
     __tablename__ = "Customer"
 
     dni = Column(String, primary_key=True, name="dni")
-    name = Column(String, name="to_update_dict")
+    name = Column(String, name="nombre")
     surname1 = Column(String, name="apellido1")
     surname2 = Column(String, name="apellido2")
     birthdate = Column(Date, name="fecha_nacimiento")
@@ -34,6 +36,9 @@ class Customer(Base):
 
     @staticmethod
     def create_empty_customer():
-        return Customer(dni="", name="", surname1="", surname2="", birthdate=dt.today(), phone="", email="", street="",
-                        portal="", door="", cp="", city="", iban="", register_date=dt.today(),drop_date=dt.today(),
+        return Customer(dni="", name="", surname1="", surname2="",
+                        birthdate=dt.strptime(dt.today().strftime(DATETIME_DATE_FORMAT), DATETIME_DATE_FORMAT), phone="", email="",
+                        street="", portal="", door="", cp="", city="", iban="",
+                        register_date=dt.strptime(dt.today().strftime(DATETIME_DATE_FORMAT), DATETIME_DATE_FORMAT),
+                        drop_date=dt.strptime(dt.today().strftime(DATETIME_DATE_FORMAT), DATETIME_DATE_FORMAT),
                         quota=0.0, active=True)
