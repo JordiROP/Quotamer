@@ -21,7 +21,6 @@ def clean_session():
         del st.session_state.user_created
     if "customer" in st.session_state:
         del st.session_state.customer
-        print(st.session_state.customer)
 
 
 @st.dialog("Panel de confirmación de registro", width="large")

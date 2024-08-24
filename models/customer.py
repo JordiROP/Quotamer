@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, Boolean, Numeric, Date, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from datetime import datetime as dt
 
-from services.formater import DATETIME_DATE_FORMAT, EARLIEST_DATE
+from services.formater import DATETIME_DATE_FORMAT, EARLIEST_GOOD_FORMAT_DATE
 
 Base = declarative_base()
 
@@ -20,11 +20,11 @@ class Customer(Base):
     street = Column(String, name="calle")
     portal = Column(String, name="portal")
     door = Column(String, name="puerta")
-    cp = Column(Integer, name="cp")
+    cp = Column(Integer, name="CP")
     city = Column(String, name="ciudad")
     iban = Column(String, name="IBAN")
     register_date = Column(Date, name="alta")
-    drop_date = Column(Date, name="baja")
+    drop_date = Column(Date, name="baja", default=dt.strptime(EARLIEST_GOOD_FORMAT_DATE, DATETIME_DATE_FORMAT))
     quota = Column(Numeric, name="cuota")
     active = Column(Boolean, name="activo")
 
