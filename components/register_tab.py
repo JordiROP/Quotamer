@@ -1,7 +1,9 @@
 import streamlit as st
 
 from models.customer import Customer
-from services.formater import INPUT_DATE_FORMAT
+from services.formater import INPUT_DATE_FORMAT, DATETIME_DATE_FORMAT
+from services.lang_manager import LanguageManager
+
 
 def init_customer(customer=None):
     if "customer" not in st.session_state:
@@ -25,16 +27,21 @@ def clean_session():
 
 @st.dialog("Panel de confirmación de registro", width="large")
 def register_confirmation(customer, db):
-    date_format = '%d-%m-%Y'
-    st.warning("Por favor confirma que los campos son correctos, "
-               "pulsa 'Confirmar' si todo está bien, en caso contrario pulsa 'Cancelar'")
+    language = st.session_state.language
+    register_confirmation_title = LanguageManager.\
+        get_register_tab_fields().get("confirm_register_title").get(language)
+    register_confirmation_warning = LanguageManager.\
+        get_register_tab_fields().get("confirm_register_warning").get(language)
+    register_confirmation_fields = LanguageManager.\
+        get_register_tab_fields().get("register_fields").get(language)
+    st.warning(register_confirmation_warning)
     col1, col2, col3 = st.columns(3)
     with col1:
         st.text(f"DNI: {customer.dni}")
         st.text(f"Nombre: {customer.name}")
         st.text(f"1er Apellido: {customer.surname1}")
         st.text(f"2do Apellido: {customer.surname2}")
-        st.text(f"Fecha Nacimiento: {customer.birthdate.strftime(date_format)}")
+        st.text(f"Fecha Nacimiento: {customer.birthdate.strftime(DATETIME_DATE_FORMAT)}")
         st.text(f"Telefono: {customer.phone}")
         st.text(f"Email: {customer.email}")
     with col2:
@@ -46,7 +53,7 @@ def register_confirmation(customer, db):
     with col3:
         st.text(f"IBAN: {customer.iban}")
         st.text(f"Cuota: {customer.quota}")
-        st.text(f"Fecha Alta: {customer.register_date.strftime(date_format)}")
+        st.text(f"Fecha Alta: {customer.register_date.strftime(DATETIME_DATE_FORMAT)}")
 
     but_col1, but_col2, *_ = st.columns([1] * 10)
     with but_col1:

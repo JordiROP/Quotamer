@@ -4,7 +4,9 @@ import streamlit as st
 from db.db import DB
 from components.register_tab import register_customer
 from components.customers_tab import set_customers_table
+from components.management_tab import set_management_tab
 
+st.session_state.language = "es"
 app_db = DB()
 st.set_page_config(layout="wide")
 
@@ -30,7 +32,7 @@ with tab2:
 with tab3:
     st.text("under construction")
 with tab4:
-    st.text("under construction")
+    set_management_tab()
 
 
 

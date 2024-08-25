@@ -1,0 +1,83 @@
+{
+  "register_title": {
+    "es": "Panel de Registro",
+    "ca": "Panell de Registre",
+    "en": "Registration Panel"
+  },
+  "confirm_register_title": {
+    "es": "Panel de Confirmación de Registro",
+    "ca": "Panell de Confirmació de Registre",
+    "en": "Registration Confirmation Panel"
+  },
+  "confirm_register_warning": {
+    "es": "Por favor confirma que los campos son correctos, pulsa 'Confirmar' si todo está bien, en caso contrario pulsa 'Cancelar'",
+    "ca": "Si us plau confirma que els camps són correctes, prem 'Confirmar' si tot està bé, en cas contrari prem 'Cancel·lar'",
+    "en": "Please confirm that the fields are correct, press 'Confirm' if everything is correct, otherwise press 'Cancel'"
+  },
+  "register_fields": {
+    "es": {
+      "dni": "DNI",
+      "name": "Nombre",
+      "f_surname": "Primer Apellido",
+      "s_surname": "Segundo Apellido",
+      "birthdate": "Fecha de Nacimiento",
+      "phone": "Número de Teléfono",
+      "email": "Correo Electrónico",
+      "street": "Calle",
+      "portal": "Portal",
+      "door": "Puerta",
+      "city": "Ciudad",
+      "cp": "Código Postal",
+      "IBAN": "IBAN",
+      "quota": "Cuota",
+      "up_date": "Fecha de Alta",
+      "drop_date": "Fecha de Baja",
+      "active": "Activo"
+    },
+    "ca": {
+      "dni": "DNI",
+      "name": "Nom",
+      "f_surname": "Primer Cognom",
+      "s_surname": "Segon Cognom",
+      "birthdate": "Data de Naixament",
+      "phone": "Número de Telèfon",
+      "email": "Correu Electrònic",
+      "street": "Carrer",
+      "portal": "Portal",
+      "door": "Porta",
+      "city": "Ciutat",
+      "cp": "Codi Postal",
+      "IBAN": "IBAN",
+      "quota": "Quota",
+      "up_date": "Data d'alta",
+      "drop_date": "Data de Baixa",
+      "active": "Actiu"
+    },
+    "en": {
+      "dni": "ID",
+      "name": "Name",
+      "f_surname": "First Surname",
+      "s_surname": "Second Surname",
+      "birthdate": "Birthdate",
+      "phone": "Phone Number",
+      "email": "E-Mail",
+      "street": "Street",
+      "portal": "Portal",
+      "door": "Door",
+      "city": "City",
+      "cp": "Postal Code",
+      "IBAN": "IBAN",
+      "quota": "Quota",
+      "up_date": "Up Date",
+      "drop_date": "Drop Date",
+      "active": "Active"
+    }
+  },
+  "buttons": {
+    "es": {
+      "confirm": "Confirmar",
+      "cancel": "Cancel",
+      "clean_fields": " Limpiar Campos"
+    }
+  }
+}

@@ -74,7 +74,8 @@ def select_customer_details(selection, app_db):
             st.date_input("Fecha de Baja", key="details_drop_date",
                           value=dt.strptime(selection.get("baja", ""), DATETIME_DATE_FORMAT),
                           format=INPUT_DATE_FORMAT)
-            st.checkbox("Activo", key="details_active", value=True if selection.get("activo", "") == "Y" else False)
+            print(selection.get("activo"))
+            st.checkbox("Activo", key="details_active", value=selection.get("activo", "") == 1)
 
         submitted = st.form_submit_button("Confirmar")
         if submitted:
