@@ -33,7 +33,7 @@ with tab2:
 with tab3:
     st.text("under construction")
 with tab4:
-    set_management_tab()
+    set_management_tab(app_db)
 
 
 

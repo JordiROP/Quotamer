@@ -9,9 +9,9 @@ class DB:
     def __init__(self):
         self.engine = create_engine('sqlite:///assets/data/database.db')
 
-    def get_customers(self):
+    def get_all_from(self, table_name: str) -> pd.DataFrame:
         with self.engine.connect() as conn:
-            return pd.read_sql("SELECT * FROM CUSTOMER;", conn)
+            return pd.read_sql(f"SELECT * FROM {table_name};", conn)
 
     def insert_customer(self, customer):
         with Session(self.engine) as session:

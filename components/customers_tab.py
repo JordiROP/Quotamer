@@ -102,7 +102,7 @@ def select_customer_details(selection, app_db):
 
 def set_customers_table(app_db):
     st.markdown("<style>{div[role=dialog]:{width: 70%}}</style>", unsafe_allow_html=True)
-    customers_df = app_db.get_customers()
+    customers_df = app_db.get_all_from("CUSTOMER")
     customers_df["fecha_nacimiento"] = pd.to_datetime(customers_df["fecha_nacimiento"])
     customers_df["alta"] = pd.to_datetime(customers_df["alta"])
     customers_df["baja"] = pd.to_datetime(customers_df["baja"])
