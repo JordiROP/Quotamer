@@ -1,4 +1,5 @@
 import json
+import streamlit as st
 from pathlib import Path
 
 # --- PATH SETTINGS ---
@@ -8,7 +9,18 @@ register_lang = lang_dir / "register.json"
 
 
 class LanguageManager:
-    @staticmethod
-    def get_register_tab_fields():
-        with open(register_lang, "r", encoding="utf8") as register_tab_lang:
-            return json.load(register_tab_lang)
+    register_tab = json.load(open(register_lang, "r", encoding="utf8"))
+
+    @classmethod
+    def screen_json_file(cls, screen: str):
+        match screen:
+            case "REGISTER":
+                return cls.register_tab
+
+    @classmethod
+    def get_field(cls, screen: str, field: str, subfield: None | str = None):
+        language = st.session_state.language
+        if subfield:
+            return cls.screen_json_file(screen).get(field).get(language).get(subfield)
+        else:
+            return cls.screen_json_file(screen).get(field).get(language)

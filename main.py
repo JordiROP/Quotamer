@@ -1,12 +1,13 @@
-from pathlib import Path
 import streamlit as st
-
-from db.db import DB
-from components.register_tab import register_customer
-from components.customers_tab import set_customers_table
-from components.management_tab import set_management_tab
-
 st.session_state.language = "es"
+
+from pathlib import Path # noqa
+from db.db import DB # noqa
+from components.register_tab import register_customer # noqa
+from components.customers_tab import set_customers_table # noqa
+from components.management_tab import set_management_tab # noqa
+
+
 app_db = DB()
 st.set_page_config(layout="wide")
 
